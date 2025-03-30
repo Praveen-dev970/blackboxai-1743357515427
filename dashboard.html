@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Healthy Streaks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .streak-gradient {
+            background: linear-gradient(135deg, #4ADE80 0%, #2D3748 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-apple-alt text-3xl text-green-500"></i>
+                    <span class="text-2xl font-bold text-gray-800">Healthy Streaks</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="dashboard.html" class="text-green-500 font-medium">
+                        <i class="fas fa-home mr-1"></i> Dashboard
+                    </a>
+                    <a href="meal-logging.html" class="text-gray-600 hover:text-green-500">
+                        <i class="fas fa-utensils mr-1"></i> Log Meal
+                    </a>
+                    <a href="challenges.html" class="text-gray-600 hover:text-green-500">
+                        <i class="fas fa-trophy mr-1"></i> Challenges
+                    </a>
+                    <a href="rewards.html" class="text-gray-600 hover:text-green-500">
+                        <i class="fas fa-medal mr-1"></i> Rewards
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-gray-600 hover:text-green-500">
+                            <i class="fas fa-user-circle text-2xl"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
+                            <a href="settings.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                <i class="fas fa-cog mr-2"></i> Settings
+                            </a>
+                            <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Welcome Section -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome back, <span id="username" class="text-green-500">User</span>!</h1>
+            <p class="text-gray-600">Track your progress and keep your healthy eating streak going.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Streak Card -->
+            <div class="streak-gradient text-white p-6 rounded-xl shadow-lg">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">Current Streak</h3>
+                        <p class="text-4xl font-bold mb-4" id="streak-count">0</p>
+                    </div>
+                    <i class="fas fa-fire text-4xl opacity-50"></i>
+                </div>
+                <div class="bg-white bg-opacity-20 rounded-full h-2 mb-2">
+                    <div class="bg-white h-2 rounded-full" style="width: 75%"></div>
+                </div>
+                <p class="text-sm">Keep going! You're 75% to your next milestone.</p>
+            </div>
+
+            <!-- Points Card -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">Total Points</h3>
+                        <p class="text-4xl font-bold mb-4 text-green-500" id="points-count">0</p>
+                    </div>
+                    <i class="fas fa-coins text-4xl text-yellow-400 opacity-50"></i>
+                </div>
+                <p class="text-sm text-gray-600">Earn more points by logging healthy meals.</p>
+            </div>
+
+            <!-- Water Intake Card -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">Water Intake</h3>
+                        <p class="text-4xl font-bold mb-4 text-blue-500" id="water-count">0/<span id="water-goal">2000</span>ml</p>
+                    </div>
+                    <i class="fas fa-tint text-4xl text-blue-300 opacity-50"></i>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg text-sm" data-ml="250">+250ml</button>
+                    <button class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg text-sm" data-ml="500">+500ml</button>
+                    <button class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg text-sm" data-ml="1000">+1000ml</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Today's Meals Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-gray-800">Today's Meals</h2>
+                <a href="meal-logging.html" class="text-green-500 hover:text-green-600 font-medium">
+                    <i class="fas fa-plus mr-1"></i> Add Meal
+                </a>
+            </div>
+
+            <div class="space-y-4" id="meals-list">
+                <!-- Meal items will be dynamically inserted here -->
+                <div class="text-center py-8 text-gray-400" id="no-meals-message">
+                    <i class="fas fa-utensils text-4xl mb-2"></i>
+                    <p>No meals logged today yet</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Achievements -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-6">Recent Achievements</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="achievements-list">
+                <!-- Achievement items will be dynamically inserted here -->
+                <div class="text-center">
+                    <div class="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-medal text-2xl text-yellow-400"></i>
+                    </div>
+                    <p class="text-sm font-medium">First Meal</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
