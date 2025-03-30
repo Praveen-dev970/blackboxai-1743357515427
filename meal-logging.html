@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Meal | Healthy Streaks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-apple-alt text-3xl text-green-500"></i>
+                    <span class="text-2xl font-bold text-gray-800">Healthy Streaks</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="dashboard.html" class="text-gray-600 hover:text-green-500">
+                        <i class="fas fa-home mr-1"></i> Dashboard
+                    </a>
+                    <a href="meal-logging.html" class="text-green-500 font-medium">
+                        <i class="fas fa-utensils mr-1"></i> Log Meal
+                    </a>
+                    <a href="challenges.html" class="text-gray-600 hover:text-green-500">
+                        <i class="fas fa-trophy mr-1"></i> Challenges
+                    </a>
+                    <a href="rewards.html" class="text-gray-600 hover:text-green-500">
+                        <i class="fas fa-medal mr-1"></i> Rewards
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-gray-600 hover:text-green-500">
+                            <i class="fas fa-user-circle text-2xl"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
+                            <a href="settings.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                <i class="fas fa-cog mr-2"></i> Settings
+                            </a>
+                            <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-2xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Log Your Meal</h1>
+            
+            <form id="meal-form">
+                <!-- Meal Type -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">Meal Type</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                        <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="meal-type" value="breakfast" class="form-radio text-green-500" checked>
+                            <span class="flex items-center">
+                                <i class="fas fa-sun text-yellow-400 mr-2"></i> Breakfast
+                            </span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="meal-type" value="lunch" class="form-radio text-green-500">
+                            <span class="flex items-center">
+                                <i class="fas fa-hamburger text-orange-400 mr-2"></i> Lunch
+                            </span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="meal-type" value="dinner" class="form-radio text-green-500">
+                            <span class="flex items-center">
+                                <i class="fas fa-moon text-blue-400 mr-2"></i> Dinner
+                            </span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="meal-type" value="snack" class="form-radio text-green-500">
+                            <span class="flex items-center">
+                                <i class="fas fa-cookie text-amber-600 mr-2"></i> Snack
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Meal Details -->
+                <div class="mb-6">
+                    <label for="meal-name" class="block text-gray-700 font-medium mb-2">Meal Name</label>
+                    <input type="text" id="meal-name" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g. Grilled Chicken Salad" required>
+                </div>
+                
+                <!-- Time -->
+                <div class="mb-6">
+                    <label for="meal-time" class="block text-gray-700 font-medium mb-2">Time</label>
+                    <input type="time" id="meal-time" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500" required>
+                </div>
+                
+                <!-- Nutrition Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label for="calories" class="block text-gray-700 font-medium mb-2">Calories</label>
+                        <div class="relative">
+                            <input type="number" id="calories" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g. 350">
+                            <span class="absolute right-3 top-2.5 text-gray-500">kcal</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="protein" class="block text-gray-700 font-medium mb-2">Protein</label>
+                        <div class="relative">
+                            <input type="number" id="protein" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g. 25">
+                            <span class="absolute right-3 top-2.5 text-gray-500">g</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Healthy Options -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">Healthy Options</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="form-checkbox text-green-500" id="vegetables">
+                            <span>Contains vegetables</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="form-checkbox text-green-500" id="whole-grains">
+                            <span>Contains whole grains</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="form-checkbox text-green-500" id="lean-protein">
+                            <span>Contains lean protein</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Notes -->
+                <div class="mb-6">
+                    <label for="notes" class="block text-gray-700 font-medium mb-2">Notes</label>
+                    <textarea id="notes" rows="3" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Any additional notes about your meal..."></textarea>
+                </div>
+                
+                <!-- Photo Upload -->
+                <div class="mb-8">
+                    <label class="block text-gray-700 font-medium mb-2">Meal Photo (Optional)</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <div class="flex flex-col items-center justify-center">
+                            <i class="fas fa-camera text-4xl text-gray-400 mb-2"></i>
+                            <p class="text-gray-500">Click to upload or drag and drop</p>
+                            <p class="text-sm text-gray-400">PNG, JPG up to 5MB</p>
+                        </div>
+                        <input type="file" id="meal-photo" class="hidden" accept="image/*">
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">
+                        <i class="fas fa-save mr-2"></i> Save Meal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Recipe Suggestions -->
+    <section class="max-w-6xl mx-auto px-4 py-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-6">Healthy Recipe Suggestions</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Recipe 1 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg" alt="Avocado Toast" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-2">Avocado Toast</h3>
+                    <p class="text-gray-600 text-sm mb-3">Whole grain bread with mashed avocado, cherry tomatoes, and feta cheese.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">320 kcal</span>
+                        <button class="text-green-500 hover:text-green-600 text-sm font-medium">
+                            <i class="fas fa-plus mr-1"></i> Add to Log
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recipe 2 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                <img src="https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg" alt="Quinoa Salad" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-2">Quinoa Salad</h3>
+                    <p class="text-gray-600 text-sm mb-3">Quinoa with cucumber, cherry tomatoes, red onion, and lemon dressing.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">280 kcal</span>
+                        <button class="text-green-500 hover:text-green-600 text-sm font-medium">
+                            <i class="fas fa-plus mr-1"></i> Add to Log
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recipe 3 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                <img src="https://images.pexels.com/photos/1351238/pexels-photo-1351238.jpeg" alt="Grilled Salmon" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-2">Grilled Salmon</h3>
+                    <p class="text-gray-600 text-sm mb-3">Salmon fillet with roasted vegetables and quinoa.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">450 kcal</span>
+                        <button class="text-green-500 hover:text-green-600 text-sm font-medium">
+                            <i class="fas fa-plus mr-1"></i> Add to Log
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="common.js"></script>
+    <script src="meal-logging.js"></script>
+</body>
+</html>
